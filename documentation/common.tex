@@ -1,0 +1,145 @@
+%% ==================
+%% Common definitions
+%% ==================
+
+
+% dependencies.
+\usepackage{booktabs, capt-of, tabularx}
+\usepackage{cuted, stfloats}
+\usepackage[table]{xcolor}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{lipsum}
+\usepackage{fontspec}
+
+% nonsense warnings suppression.
+\usepackage{pxrubrica}
+\usepackage{anyfontsize}
+\usepackage{parskip}
+
+% enumerations.
+\usepackage{enumerate}
+
+% codes.
+\usepackage{listings}
+
+% complex typesettings.
+\usepackage{ruby}
+
+% math figures.
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{pifont}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{mathtools}
+
+% page boarder margin.
+\usepackage{geometry}
+
+% provide bottom-center page number.
+\usepackage{fancyhdr}
+
+% force captions center.
+\usepackage[center]{caption}
+
+% Line spacing.
+\usepackage{setspace}
+
+% bib.
+% \usepackage{biblatex}
+\usepackage{cite}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Horizontal divider.
+\newcommand{\hdivider}{\noindent\rule[0.25\baselineskip]{\textwidth}{0.5pt}}
+
+% counterspell of \newcommand.
+\newcommand{\undefine}[1]{\let #1 \relax}
+
+% double angle support.
+\makeatletter
+\newsavebox{\@brx}
+\newcommand{\llangle}[1][]{\savebox{\@brx}{\(\m@th{#1\langle}\)}%
+  \mathopen{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\newcommand{\rrangle}[1][]{\savebox{\@brx}{\(\m@th{#1\rangle}\)}%
+  \mathclose{\copy\@brx\kern-0.5\wd\@brx\usebox{\@brx}}}
+\makeatother
+
+% picture.
+\newcommand{\pictureEmbed}[3]{%
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.85\textwidth]{#1}
+    \caption{#3}
+    \label{#2}
+\end{figure*}
+}
+
+% code.
+\lstset{
+    columns=fixed,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=lrtb,
+    backgroundcolor=\color[RGB]{245,245,244},
+    numberstyle=\footnotesize\color{darkgray},           
+    commentstyle=\it\color[RGB]{0,96,96},
+    stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},
+    showstringspaces=false
+}
+
+% page number.
+\newcommand{\makePageNumberAtBottom}[0]{
+    % Page number.
+    \thispagestyle{plain}
+    \pagestyle{plain}
+    \lhead{}
+    \chead{}
+    \rhead{}
+    \lfoot{}
+    \cfoot{\thepage}
+    \rfoot{}
+}
+
+% table of contents.
+\newcommand{\makeTableOfContents}[0]{
+    \tableofcontents
+}
+
+% suppress nonsense warnings.
+\newcommand{\suppressUnderfullBoxes}[0]{
+    \hbadness=10000
+    \vbadness=10000
+    \hfuzz=5000pt
+    \vfuzz=5000pt
+}
+
+% Only support unicode, without updating names and line height.
+\newcommand{\ctexfix}[0]{
+    \usepackage[fontsize=10pt]{fontsize}
+    \renewcommand{\baselinestretch}{1}
+    \renewcommand{\contentsname}{Contents}
+    \renewcommand{\refname}{References}
+    \renewcommand{\listfigurename}{Fig}
+    \renewcommand{\listtablename}{Table}
+    \renewcommand{\figurename}{Fig}
+    \renewcommand{\tablename}{Table}
+    \renewcommand{\abstractname}{Abstract}
+    \renewcommand{\indexname}{Index}
+    \renewcommand{\refname}{References}
+    \renewcommand{\appendixname}{Appendix}
+    \renewcommand{\proofname}{Proof}
+    \renewcommand{\appendixname}{Appendix}
+}
+
+% Tricks on multicolumn: auto warp.
+\newcommand{\aw}[1]{\multicolumn{1}{c}{#1}}
+
+% Quick ref of figure
+\newcommand{\fig}[1]{\ref{fig:#1}}
+

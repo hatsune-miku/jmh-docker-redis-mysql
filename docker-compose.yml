@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+    # For disk-intensive tests
+    database:
+        image: mysql:8.0
+        environment:
+            MYSQL_ROOT_PASSWORD: swordfish
+            MYSQL_DATABASE: test
+        volumes:
+            - ./mysql-init:/mysql-init
+
+    # For memory-intensive tests
+    redis:
+        image: redis:latest
+        command: redis-server --appendonly yes --slaveof no one
+
+    # The benchmark program
+    benchmark_core:
+        environment:
+            DATABASE_ADDRESS: database
+            REDIS_ADDRESS: redis
+        build:
+            dockerfile: benchmark.Dockerfile

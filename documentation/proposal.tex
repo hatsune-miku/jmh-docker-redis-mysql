@@ -1,0 +1,62 @@
+\documentclass{article}
+
+\input{common.tex}
+\geometry{a4paper, margin=0.75in}
+
+%% For this project, you must select some element of operating systems (filesystems, memory management, scheduling, security, etc.) and measure its effect on a workload that' relevant to you. Some examples of projects that students have previously done include....
+
+\title{ENGI-9875 Graduate Project Proposal of \\ \textbf{To What Extend Does Windows Virtual Memory \\ Affect the Performance of Containerized Applications}}
+\author{Zhen Guan (202191382, zguan@mun.ca)}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Background}
+
+Virtual Memory (VM) is a feature of modern operating systems like Windows. It swaps out the inactive memory pages to the external storage when the physical memory is low. This allows the system to carry some heavier workloads without having to extend the actual memory size.
+
+However, because of the huge performance gap\cite{6949047,8946136} between modern SSDs and modern high-frequency memories, swapping brings noticeable performance impact. This gap is particularly larger in devices using HDDs.
+
+\subsection{Containers Increase Memory Pressure}
+
+Containerization technologies like Docker creates isolated runtimes for applications to ensure the environment is always correctly configured, while in another aspect, this usually means that containerized applications require more memories to run. 
+
+
+\section{Introduction}
+
+In the paper I will discuss the performance impact of Windows VM on containerized applications in two aspects:
+
+\begin{itemize}
+    \item Physical memory is (nearly) full and swapping happens frequently,
+    \item Physical memory is sufficient and swapping happends occasionally.
+\end{itemize}
+
+In each of the two aspects, I will:
+
+\begin{itemize}
+    \item Measure the performance of memory-intensive applications like Redis inside Docker containers,
+    \item Measure the performance of disk-intensive apps inside containers, and
+    \item Measure my own program that runs simple but quantitative tasks, inside a container.
+\end{itemize}
+
+\subsection{Method of Measurement}
+
+For the same application running on different memory conditions, I will first measure the time it takes to complete the task by writing a program that calls their main functions (for example, ``\texttt{SET ...}'' for Redis and ``\texttt{INSERT INTO ...}'' for databases). The CPU usage will also be take into consideration.
+
+Then, as expected, there will be a performance difference between the two conditions. Some applications may be more sensitive to VM than others, that is, they may have a larger performance drop than others. I will try to analyze the reason behind this.
+
+
+\bibliographystyle{abbrv}
+\bibliography{proposal.bib}
+
+\end{document}
+
+%%
+%% This one-page proposal should include:
+%%
+%% the title of your proposed case study or project,
+%%
+%% a paragraph or two (or an outline) describing what you will investigate and
+%%
+%% at least one (ideally two or more) references — from reputable sources — on which you base your investigation.
+%%
